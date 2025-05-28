@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resonanzfall – Protokoll I</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+      color: white;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: black;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      max-width: 600px;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: white;
+      color: black;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .cta:hover {
+      background-color: #ddd;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Resonanzfall – Protokoll I</h1>
+    <p>Ein literarischer Hard-SciFi-Thriller über das leiseste Signal der Zerstörung. Was, wenn das Ende der Zivilisation kein Knall ist – sondern ein Flüstern?</p>
+  </header>  <section>
+    <h2>Buchbeschreibung</h2>
+    <p>In einer scheinbar perfekten Welt beginnt ein kaum messbares Frequenzmuster das biologische und technologische Gleichgewicht zu destabilisieren. Niemand hört es. Niemand erkennt es. Doch es ist da.</p>
+  </section>  <section>
+    <h2>Leseprobe</h2>
+    <p>Du kannst hier eine exklusive Leseprobe herunterladen und eintauchen in die stille Eskalation eines harmonischen Systems.</p>
+    <a href="#" class="cta">Leseprobe herunterladen (PDF)</a>
+  </section>  <section>
+    <h2>Über den Autor</h2>
+    <p>Frank Horn schreibt intelligente Science-Fiction mit Fokus auf Technologie, Ethik und Systemkritik. „Resonanzfall“ ist sein Debüt – atmosphärisch, verstörend und erschreckend aktuell.</p>
+  </section>  <section>
+    <h2>Kontakt</h2>
+    <p>Du hast Fragen, Feedback oder möchtest eine Lesung organisieren?</p>
+    <p>Email: <a href="mailto:kontakt@resonanzfall.de" style="color: #00ccff;">kontakt@resonanzfall.de</a></p>
+  </section>  <footer>
+    <p>&copy; 2025 Frank Horn – Alle Rechte vorbehalten.</p>
+  </footer>
+</body>
+</html>
