@@ -1,9 +1,187 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resonanzfall – Kapitel 1</title>
-  ...
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+    }
+    .pause-section {
+      height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #f00;
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+    }
+    .pulse-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.3);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      animation: pulse 2s infinite ease-in-out;
+      margin-top: 1rem;
+    }
+    #timeline {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.8);
+      color: #0f0;
+      border-top: 1px solid #0ff;
+      z-index: 9999;
+      text-align: right;
+    }
+    .scanner {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #001111 0%, #000 100%);
+      color: #0ff;
+      font-size: 1.2rem;
+      position: relative;
+    }
+    .retina {
+      width: 100px;
+      height: 100px;
+      border: 3px solid #0ff;
+      border-radius: 50%;
+      animation: scan 3s infinite;
+      box-shadow: 0 0 20px #0ff;
+    }
+    .terminal {
+      padding: 3rem;
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      text-align: center;
+    }
+    .terminal input {
+      background: black;
+      color: #0f0;
+      border: none;
+      font-size: 1rem;
+      padding: 0.5rem;
+      width: 80%;
+      max-width: 500px;
+    }
+    .terminal pre {
+      background: rgba(0,255,255,0.05);
+      padding: 1rem;
+      border: 1px solid #0ff;
+      color: #0ff;
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .hidden-symbol {
+      position: relative;
+      cursor: pointer;
+    }
+    .hidden-symbol:hover::after {
+      content: attr(data-symbol);
+      position: absolute;
+      top: -1.5rem;
+      left: 0;
+      background: #000;
+      color: #f0f;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.8rem;
+      border: 1px solid #f0f;
+      white-space: nowrap;
+    }
+    .glassword {
+      display: inline-block;
+      color: transparent;
+      background: linear-gradient(to right, #0ff, #f0f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 3px #0ff);
+      font-weight: bold;
+    }
+    @keyframes scan {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.4); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Herzschlag-Stille-Moment -->
+  <div class="pause-section">
+    <div>STILLE</div>
+    <div class="pulse-circle"></div>
+    <audio id="heartbeat" autoplay>
+      <source src="https://cdn.pixabay.com/download/audio/2022/07/25/audio_46b7cf3db2.mp3?filename=heartbeat-loop-113723.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+  <!-- Retina-Scanner Simulation -->
+  <div class="scanner">
+    <div>Zugriffskontrolle – Retinascanner aktiv</div>
+    <div class="retina"></div>
+  </div>
+
+  <!-- Terminal mit Alien-KI-Dialog -->
+  <div class="terminal">
+    <h3>Frequenzterminal aktiv – Befehl eingeben</h3>
+    <input id="commandInput" placeholder="decode: fqv98" onkeydown="processCommand(event)" />
+    <pre id="output">>> Warten auf Eingabe...</pre>
+    <p class="hidden-symbol" data-symbol="01100100">▲ Frequenzstörung entdeckt</p>
+    <p><span class="glassword">Resonanz</span> ist instabil.</p>
+  </div>
+
+  <!-- Rücklauf-Zeitlinie -->
+  <div id="timeline">Jahr: <span id="yearDisplay">2090</span></div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const scrolled = (scrollTop / scrollHeight);
+      const year = 2090 - Math.floor(scrolled * 190);
+      document.getElementById('yearDisplay').textContent = year;
+    });
+
+    function processCommand(e) {
+      if (e.key === 'Enter') {
+        const input = e.target.value.trim();
+        const output = document.getElementById('output');
+        let result = `>> ${input}\n`;
+        if (input === 'decode: fqv98') {
+          result += '>> Ursprung... Koordinaten inkohärent... Struktur bricht...\n>> Letztes Fragment: [ηἰχή:Resonantia]';
+        } else {
+          result += '>> Zugriff verweigert – Befehl unbekannt.';
+        }
+        output.textContent = result;
+        e.target.value = '';
+      }
+    }
+  </script>
+
+</body>
 </html>
